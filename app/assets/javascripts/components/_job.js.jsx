@@ -17,10 +17,10 @@ var Job = React.createClass({
   },
 
   render() {
-    var title = this.state.editable ? <p>Title: <input type='text' ref='title' defaultValue={this.props.job.title} /></p> : <h3>({this.props.job.id}) {this.props.job.title}</h3>;
-    var location = this.state.editable ? <p>Location: <input type='text' ref='location' defaultValue={this.props.job.location} /></p> : <p>{this.props.job.location}</p>;
-    var jobtype = this.state.editable ? <p>Jobtype: <input type='text' ref='jobtype' defaultValue={this.props.job.jobtype} /></p> : <p>{this.props.job.jobtype}</p>;
-    var description = this.state.editable ? <p>Description: <input type='text' ref='description' defaultValue={this.props.job.description} /></p> : <p>{this.props.job.description}</p>;
+    var title = this.state.editable ? <p>Title: <input type='text' ref='title' defaultValue={this.props.job.title} /></p> : <h3> {this.props.job.title}</h3>;
+    var location = this.state.editable ? <p>Location: <input type='text' ref='location' defaultValue={this.props.job.location} /></p> : <p>Location: {this.props.job.location}</p>;
+    var jobtype = this.state.editable ? <p>Type: <input type='text' ref='jobtype' defaultValue={this.props.job.jobtype} /></p> : <p>Type: {this.props.job.jobtype}</p>;
+    var description = this.state.editable ? <p>Description: <input type='text' ref='description' defaultValue={this.props.job.description} /></p> : <p><i>{this.props.job.description}</i></p>;
     return (
       <div>
         {title}
