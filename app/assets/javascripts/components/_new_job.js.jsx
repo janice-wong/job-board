@@ -1,24 +1,26 @@
 var NewJob = React.createClass({
   getInitialState() {
-    return { selectedOption: '' }
+    return { selectedOption: '', value: 'New York' }
   },
 
   handleClick() {
     var title = this.refs.title.value;
     var description = this.refs.description.value;
-    var jobtype = this.state.selectedOption
+    var jobtype = this.state.selectedOption;
+    var location = this.state.value;
     if (title && description) {
       $.ajax({
         url: '/api/v1/jobs',
         type: 'POST',
-        data: { job: {title: title, description: description, location: 'placeholder location', jobtype: jobtype} },
+        data: { job: {title: title, description: description, location: location, jobtype: jobtype} },
         success: (job) => {
           this.props.handleSubmit(job);
         }
       });
-      this.refs.title.value="";
-      this.refs.description.value="";
-      this.state.selectedOption="";
+      this.refs.title.value='';
+      this.refs.description.value='';
+      this.state.selectedOption='';
+      this.state.value='New York';
     }
   },
 
@@ -26,12 +28,16 @@ var NewJob = React.createClass({
     this.setState({ selectedOption: e.target.value });
   },
 
+  handleChange(e) {
+    this.setState({ value: e.target.value });
+  },
+
   render() {
     return (
       <div>
-        <p><input ref='title' placeholder='Enter job title' /></p>
-        <p><input ref='description' placeholder='Enter job description' /></p>
         <form>
+          <p><input ref='title' placeholder='Enter job title' /></p>
+          <p><input ref='description' placeholder='Enter job description' /></p>
           <div>
             <label>
               <input type="radio" value="Full-time" 
@@ -48,6 +54,15 @@ var NewJob = React.createClass({
               Part-time
             </label>
           </div>
+          <p>
+            Location: 
+            <select value={this.state.value} onChange={this.handleChange}>
+              <option value="New York">New York</option>
+              <option value="Los Angeles">Los Angeles</option>
+              <option value="San Francisco">San Francisco</option>
+              <option value="Boston">Boston</option>
+            </select>
+          </p>
         </form>
         <p><button onClick={this.handleClick}>Submit</button></p>
       </div>

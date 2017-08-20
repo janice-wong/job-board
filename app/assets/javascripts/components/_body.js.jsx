@@ -43,7 +43,7 @@ var Body = React.createClass({
 
   updateJobs(job) {
     var jobs = this.state.jobs.filter((i) => { return i.id != job.id });
-    jobs.push(job);
+    jobs.push(job)
 
     this.setState({jobs: jobs});
   },
