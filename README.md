@@ -10,3 +10,4 @@ Job Board is a single page app that features a Rails API on the back-end with Re
 # Screenshots
 
 ![alt text](https://preview.ibb.co/kRN8mv/Screen_Shot_2017_09_06_at_10_43_40_PM.png)
+![alt text](https://preview.ibb.co/btsxeF/Screen_Shot_2017_09_06_at_10_48_17_PM.png)
