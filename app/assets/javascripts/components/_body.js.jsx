@@ -1,10 +1,14 @@
 var Body = React.createClass({
   getInitialState() {
-    return { jobs: [] }
+    return { jobs: [], showCreate: false }
   },
 
   componentDidMount() {
     $.getJSON('/api/v1/jobs.json', (response) => { this.setState({ jobs: response }) });
+  },
+
+  onClick() {
+    this.setState({ showCreate: !this.state.showCreate });
   },
 
   handleSubmit(job) {
@@ -49,7 +53,8 @@ var Body = React.createClass({
   render() {
     return (
       <div>
-        <NewJob handleSubmit={this.handleSubmit} />
+        <input type="submit" value={ this.state.showCreate ? "Done" : "Add Job" } onClick={this.onClick} />
+        { this.state.showCreate ? <NewJob handleSubmit={this.handleSubmit} /> : null }
         <AllJobs jobs={this.state.jobs} handleDelete={this.handleDelete} onUpdate={this.handleUpdate} />
       </div>
     )
