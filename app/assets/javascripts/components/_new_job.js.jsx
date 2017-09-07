@@ -8,7 +8,7 @@ var NewJob = React.createClass({
     var description = this.refs.description.value;
     var jobtype = this.state.selectedOption;
     var location = this.state.value;
-    if (title && description) {
+    if (title && description && jobtype && location) {
       $.ajax({
         url: '/api/v1/jobs',
         type: 'POST',
@@ -20,7 +20,7 @@ var NewJob = React.createClass({
       this.refs.title.value='';
       this.refs.description.value='';
       this.state.selectedOption='';
-      this.state.value='New York';
+      this.state.value='';
     }
   },
 

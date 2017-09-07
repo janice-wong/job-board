@@ -23,11 +23,9 @@ var Body = React.createClass({
   },
 
   removeJobClient(id) {
-    var newJobs = this.state.jobs.filter((job) => {
-      return job.id != id;
-    });
+    var newState = this.state.jobs.filter((job) => { return job.id != id });
 
-    this.setState({ jobs: newJobs });
+    this.setState({ jobs: newState });
   },
 
   handleUpdate(job) {
@@ -42,10 +40,10 @@ var Body = React.createClass({
   },
 
   updateJobs(job) {
-    var jobs = this.state.jobs.filter((i) => { return i.id != job.id });
-    jobs.push(job)
+    var newState = this.state.jobs.filter((i) => { return i.id != job.id });
+    newState.push(job)
 
-    this.setState({jobs: jobs});
+    this.setState({jobs: newState});
   },
 
   render() {
