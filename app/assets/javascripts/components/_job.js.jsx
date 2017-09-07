@@ -8,7 +8,7 @@ var Job = React.createClass({
       var id = this.props.job.id;
       var title = this.state.job.title;
       var description = this.state.job.description;
-      var location = this.refs.location.value;
+      var location = this.state.job.location;
       var jobtype = this.refs.jobtype.value;
       var job = {id: id, title: title, description: description, location: location, jobtype: jobtype }
       this.props.handleUpdate(job);
@@ -24,7 +24,17 @@ var Job = React.createClass({
 
   render() {
     var title = this.state.editable ? <p>Title: <input onChange={this.handleChange.bind(this, 'title')} value={this.props.job.title} /></p> : <h3> {this.props.job.title}</h3>;
-    var location = this.state.editable ? <p>Location: <input type='text' ref='location' defaultValue={this.props.job.location} /></p> : <p><strong>Location:</strong> {this.props.job.location}</p>;
+    var location = this.state.editable ? 
+    <p>
+      Location: 
+      <select value={this.props.job.location} onChange={this.handleChange.bind(this, 'location')}>
+        <option value="New York">New York</option>
+        <option value="Los Angeles">Los Angeles</option>
+        <option value="San Francisco">San Francisco</option>
+        <option value="Boston">Boston</option>
+      </select>
+    </p> 
+    : <p><strong>Location:</strong> {this.props.job.location}</p>;
     var jobtype = this.state.editable ? <p>Type: <input type='text' ref='jobtype' defaultValue={this.props.job.jobtype} /></p> : <p><strong>Type:</strong> {this.props.job.jobtype}</p>;
     var description = this.state.editable ? <p>Description: <textarea onChange={this.handleChange.bind(this, 'description')} value={this.props.job.description} ></textarea></p> : <p><i>{this.props.job.description}</i></p>;
     return (
