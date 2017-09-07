@@ -1,62 +1,61 @@
 var NewJob = React.createClass({
   getInitialState() {
-    return { selectedOption: '', value: 'New York' }
+    return { location: 'New York' }
   },
 
   handleClick() {
-    var title = this.refs.title.value;
-    var description = this.refs.description.value;
-    var jobtype = this.state.selectedOption;
-    var location = this.state.value;
-    if (title && description && jobtype && location) {
+    var title = this.state.title;
+    var description = this.state.description;
+    var jobType = this.state.jobType;
+    var location = this.state.location;
+    if (title && description && jobType && location) {
       $.ajax({
         url: '/api/v1/jobs',
         type: 'POST',
-        data: { job: {title: title, description: description, location: location, jobtype: jobtype} },
+        data: { job: {title: title, description: description, location: location, jobtype: jobType} },
         success: (job) => {
           this.props.handleSubmit(job);
         }
       });
-      this.refs.title.value='';
-      this.refs.description.value='';
-      this.state.selectedOption='';
-      this.state.value='';
+      this.state.title = '';
+      this.state.description = '';
+      this.state.jobType = '';
+      this.state.location = '';
     }
   },
 
-  handleOptionChange(e) {
-    this.setState({ selectedOption: e.target.value });
-  },
+  handleInputChange(e) {
+    const name = e.target.name;
+    const value = e.target.value;
 
-  handleChange(e) {
-    this.setState({ value: e.target.value });
+    this.setState({[name]: value});
   },
 
   render() {
     return (
       <div>
         <form>
-          <p><input ref='title' placeholder='Enter job title' /></p>
-          <p><textarea ref='description' placeholder='Enter job description'></textarea></p>
+          <p><input name="title" value={this.state.title} placeholder='Enter job title' onChange={this.handleInputChange} /></p>
+          <p><textarea name='description' placeholder='Enter job description' onChange={this.handleInputChange}></textarea></p>
           <div>
             <label>
-              <input type="radio" value="Full-time" 
-                            checked={this.state.selectedOption === 'Full-time'} 
-                            onChange={this.handleOptionChange} />
+              <input name="jobType" type="radio" value="Full-time" 
+                            checked={this.state.jobType === 'Full-time'} 
+                            onChange={this.handleInputChange} />
               Full-time
             </label>
           </div>
           <div>
             <label>
-              <input type="radio" value="Part-time" 
-                            checked={this.state.selectedOption === 'Part-time'} 
-                            onChange={this.handleOptionChange} />
+              <input name="jobType" type="radio" value="Part-time" 
+                            checked={this.state.jobType === 'Part-time'} 
+                            onChange={this.handleInputChange} />
               Part-time
             </label>
           </div>
           <p>
             Location: 
-            <select value={this.state.value} onChange={this.handleChange}>
+            <select name="location" value={this.state.location} onChange={this.handleInputChange}>
               <option value="New York">New York</option>
               <option value="Los Angeles">Los Angeles</option>
               <option value="San Francisco">San Francisco</option>
