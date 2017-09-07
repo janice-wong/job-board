@@ -1,6 +1,6 @@
 var NewJob = React.createClass({
   getInitialState() {
-    return { title: '', description: '', jobType: '', location: 'New Yorkg' }
+    return { title: '', description: '', jobType: '', location: 'New York' }
   },
 
   handleClick() {
