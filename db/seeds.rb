@@ -1,3 +1,5 @@
+Job.all.destroy_all
+
 cities = ['New York', 'San Francisco', 'Los Angeles', 'Boston']
 jobtype = ['Full-time', 'Part-time']
 
