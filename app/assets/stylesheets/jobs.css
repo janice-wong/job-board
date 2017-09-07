@@ -26,6 +26,14 @@ textarea {
   width: 100%;
 }
 
+.addJob {
+  border-radius: 6px;
+  border: 2px solid #4286f4;
+  background-color: #4286f4;
+  color: white;
+  padding: 10px 8px;
+}
+
 .Jobs {
   border-bottom: 1px solid #ccc;
   padding: 10px;
