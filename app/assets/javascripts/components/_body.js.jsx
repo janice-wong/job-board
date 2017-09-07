@@ -53,8 +53,9 @@ var Body = React.createClass({
   render() {
     return (
       <div>
-        <input type="submit" className="addJob" value={ this.state.showCreate ? "Done" : "Add Job" } onClick={this.onClick} />
+        <p><input type="submit" className="addJob" value={ this.state.showCreate ? "Done" : "Add Job" } onClick={this.onClick} />
         { this.state.showCreate ? <NewJob handleSubmit={this.handleSubmit} /> : null }
+        </p>
         <AllJobs jobs={this.state.jobs} handleDelete={this.handleDelete} onUpdate={this.handleUpdate} />
       </div>
     )
