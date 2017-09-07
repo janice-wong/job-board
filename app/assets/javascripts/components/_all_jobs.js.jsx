@@ -8,7 +8,11 @@ var AllJobs = React.createClass({
   },
 
   render() {
-    var jobs = this.props.jobs.map((job) => {
+    var sorted_jobs = this.props.jobs.sort(function (a, b) {
+      return a.id - b.id;
+    });
+
+    var jobs = sorted_jobs.map((job) => {
       return (
         <div key={job.id} className="Jobs">
           <Job job={job}
