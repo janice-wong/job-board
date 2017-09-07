@@ -1,13 +1,13 @@
 var Job = React.createClass({
   getInitialState() {
-    return {editable: false}
+    return { editable: false, job: {} }
   },
 
   handleEdit() {
     if (this.state.editable) {
       var id = this.props.job.id;
-      var title = this.refs.title.value;
-      var description = this.refs.description.value;
+      var title = this.state.job.title;
+      var description = this.state.job.description;
       var location = this.refs.location.value;
       var jobtype = this.refs.jobtype.value;
       var job = {id: id, title: title, description: description, location: location, jobtype: jobtype }
@@ -16,11 +16,17 @@ var Job = React.createClass({
     this.setState({editable: !this.state.editable})
   },
 
+  handleChange(propertyName, event) {
+    const job = this.props.job;
+    job[propertyName] = event.target.value;
+    this.setState({ job: job });
+  },
+
   render() {
-    var title = this.state.editable ? <p>Title: <input type='text' ref='title' defaultValue={this.props.job.title} /></p> : <h3> {this.props.job.title}</h3>;
+    var title = this.state.editable ? <p>Title: <input onChange={this.handleChange.bind(this, 'title')} value={this.props.job.title} /></p> : <h3> {this.props.job.title}</h3>;
     var location = this.state.editable ? <p>Location: <input type='text' ref='location' defaultValue={this.props.job.location} /></p> : <p><strong>Location:</strong> {this.props.job.location}</p>;
     var jobtype = this.state.editable ? <p>Type: <input type='text' ref='jobtype' defaultValue={this.props.job.jobtype} /></p> : <p><strong>Type:</strong> {this.props.job.jobtype}</p>;
-    var description = this.state.editable ? <p>Description: <textarea type='text' ref='description' defaultValue={this.props.job.description}></textarea></p> : <p><i>{this.props.job.description}</i></p>;
+    var description = this.state.editable ? <p>Description: <textarea onChange={this.handleChange.bind(this, 'description')} value={this.props.job.description} ></textarea></p> : <p><i>{this.props.job.description}</i></p>;
     return (
       <div>
         {title}
