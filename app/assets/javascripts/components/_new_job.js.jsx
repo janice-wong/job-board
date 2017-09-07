@@ -33,7 +33,7 @@ var NewJob = React.createClass({
       <div>
         <form>
           <p><input name="title" value={this.state.title} placeholder='Enter job title' onChange={this.handleInputChange} /></p>
-          <p><textarea name='description' placeholder='Enter job description' onChange={this.handleInputChange}></textarea></p>
+          <p><textarea name='description' placeholder='Enter job description' value={this.state.description} onChange={this.handleInputChange}></textarea></p>
           <div>
             <label>
               <input name="jobType" type="radio" value="Full-time" 
