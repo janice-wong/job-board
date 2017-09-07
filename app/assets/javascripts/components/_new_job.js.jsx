@@ -1,6 +1,6 @@
 var NewJob = React.createClass({
   getInitialState() {
-    return { location: 'New York' }
+    return { title: '', description: '', jobType: '', location: 'New Yorkg' }
   },
 
   handleClick() {
@@ -12,7 +12,7 @@ var NewJob = React.createClass({
       $.ajax({
         url: '/api/v1/jobs',
         type: 'POST',
-        data: { job: {title: title, description: description, location: location, jobtype: jobType} },
+        data: { job: {title: title, description: description, jobtype: jobType, location: location} },
         success: (job) => {
           this.props.handleSubmit(job);
         }
@@ -25,10 +25,7 @@ var NewJob = React.createClass({
   },
 
   handleInputChange(e) {
-    const name = e.target.name;
-    const value = e.target.value;
-
-    this.setState({[name]: value});
+    this.setState({[e.target.name]: e.target.value});
   },
 
   render() {
